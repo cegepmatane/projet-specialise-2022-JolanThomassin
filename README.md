@@ -1,6 +1,11 @@
 # projet-specialise-2022-JolanThomassin
 projet-specialise-2022-JolanThomassin created by GitHub Classroom
 
+# Capacités actuelles du bot :
+ - Capable d'avoir un échange basique (Salut, ça va ?, ...).
+ - Capable de donné la météo.
+ - Capable de donné le lien du GitHub.
+
 # Document Google Docs : FICHE : LANCEMENT "KICKOFF" du projet
 https://docs.google.com/document/d/1wSuGc5Og3coYLbGw4nG7HaKBfHFb8mb4dHmUQezUKVw/edit?usp=sharing
 
