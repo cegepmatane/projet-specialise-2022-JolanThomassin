@@ -5,7 +5,7 @@ projet-specialise-2022-JolanThomassin created by GitHub Classroom
  - Capable d'avoir un échange basique (Salut, ça va ?, ...).
  - Capable de donné la météo.
  - Capable de donné le lien du GitHub.
-
+ - Capable de donné le lien d'une recherche Youtube qu'il a effectué.
 
 # Sujet sur lesquelles il est entrainé :
  - Début de conversation.
