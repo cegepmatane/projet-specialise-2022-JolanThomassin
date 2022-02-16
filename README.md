@@ -19,3 +19,6 @@ https://docs.google.com/presentation/d/1ChEB4yaFYtIKwJ8_T5LCPWjSnW5wW5YpLHt4tSKF
 
 # Document Google Docs : PoC  
 https://docs.google.com/document/d/1Mp9ZXZGdk2wTEyMPPjJY_zUbQhJSTwdNAQBoU0MKqDQ/edit?usp=sharing
+
+# Document Google Docs : Grilles de comparaison
+https://docs.google.com/presentation/d/1rhaF1GMz1TdciKHFhfwgMGqj6WmT8l4P7tEJADrjfGo/edit?usp=sharing
