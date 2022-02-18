@@ -1,5 +1,5 @@
 # projet-specialise-2022-JolanThomassin
-projet-specialise-2022-JolanThomassin created by GitHub Classroom
+Réalisation d'un chatbot en python dans l'optique du cours de projet spécialisé.
 
 # Capacités actuelles du bot :
  - Capable d'avoir un échange basique (Salut, ça va ?, ...).
