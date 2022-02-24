@@ -10,6 +10,9 @@ Réalisation d'un chatbot en python dans l'optique du cours de projet spécialis
 # Sujet sur lesquelles il est entrainé :
  - Début de conversation.
  - Présentation.
+ - Loisirs
+ - Passions
+ - Humour
  
 # Itération 1
 ## Document Google Docs : FICHE : LANCEMENT "KICKOFF" du projet
