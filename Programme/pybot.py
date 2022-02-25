@@ -110,6 +110,12 @@ class Bot() :
 			'Quel vidéo/musique cherchez vous ?',
 		])
 
+		### Train pour Loisirs ###
+		trainer.train([
+		 	'Quels sont tes loisirs ?',
+			'Discuter avec vous.',
+		])
+
 		### Démarrage ###
 		self.pagePrincipale()
 		self.ecranLogiciel.mainloop()
