@@ -35,6 +35,7 @@ class Bot() :
 		self.texteSept = ""
 		self.texteHuit = ""
 		self.modeRechercheYoutubeActif = False
+		self.police = 14
 
 		### Création du bot ###
 		self.chatbot = ChatBot("Jolan")
@@ -214,14 +215,14 @@ class Bot() :
 		self.boutonQuitterApplication = self.canvaEcranLogiciel.create_window((self.largeurEcran/2)-285, 450, window=self.boutonQuitterApplication)
 
 		### Chat de l'application ###
-		self.chatUserPositionUn = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+150, text=self.texteUn, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionDeux = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+100, text=self.texteDeux, font=("OCR A Extended", 14), fill="#6CB6BB")
-		self.chatUserPositionTrois = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+50, text=self.texteTrois, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionQuatre = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2), text=self.texteQuatre, font=("OCR A Extended", 14), fill="#6CB6BB")
-		self.chatUserPositionCinq = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-50, text=self.texteCinq, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionSix = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-100), text=self.texteSix, font=("OCR A Extended", 14), fill="#6CB6BB")
-		self.chatUserPositionSept = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-150, text=self.texteSept, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionHuit = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-200), text=self.texteHuit, font=("OCR A Extended", 14), fill="#6CB6BB")
+		self.chatUserPositionUn = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+150, text=self.texteUn, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionDeux = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+100, text=self.texteDeux, font=("OCR A Extended", self.police), fill="#6CB6BB")
+		self.chatUserPositionTrois = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+50, text=self.texteTrois, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionQuatre = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2), text=self.texteQuatre, font=("OCR A Extended", self.police), fill="#6CB6BB")
+		self.chatUserPositionCinq = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-50, text=self.texteCinq, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionSix = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-100), text=self.texteSix, font=("OCR A Extended", self.police), fill="#6CB6BB")
+		self.chatUserPositionSept = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-150, text=self.texteSept, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionHuit = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-200), text=self.texteHuit, font=("OCR A Extended", self.police), fill="#6CB6BB")
 
 	def quitterLeJeu(self):
 		self.ecranLogiciel.destroy()
@@ -229,7 +230,17 @@ class Bot() :
 	def copierLeTexte(self):
 		pyperclip.copy(str(self.texteUn))
 
+
 	def changerDeTexte(self, texte, reponseDuBot):
+		compteur = 0 
+		for i in range(0, len(texte)) :
+			compteur += 1
+
+		if compteur < 62 :
+			self.police = 14
+		elif compteur >= 62 :
+			self.police = 8
+
 		self.texteHuit = self.texteSix
 		self.texteSept = self.texteCinq
 		self.texteSix = self.texteQuatre
