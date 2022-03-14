@@ -167,6 +167,12 @@ class Bot() :
 			'Discuter avec vous.',
 		])
 
+		### Train pour Humour ###
+		trainer.train([
+		 	'Raconte moi une blague',
+			'La plage dit à l’océan : dire que tout le monde aime l’eau c’est assez vague',
+		])
+		
 		### Démarrage ###
 		self.pagePrincipale()
 		self.ecranLogiciel.mainloop()
