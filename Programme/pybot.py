@@ -172,7 +172,6 @@ class Bot() :
 		 	'Raconte moi une blague',
 			'La plage dit à l’océan : dire que tout le monde aime l’eau c’est assez vague',
 		])
-		
 		### Démarrage ###
 		self.pagePrincipale()
 		self.ecranLogiciel.mainloop()
@@ -236,7 +235,6 @@ class Bot() :
 	def copierLeTexte(self):
 		pyperclip.copy(str(self.texteUn))
 
-
 	def changerDeTexte(self, texte, reponseDuBot):
 		compteurUn = 0
 		compteurDeux = 0 
@@ -250,7 +248,7 @@ class Bot() :
 		if compteurUn < 62 :
 			self.police = 14
 		elif compteurUn >= 62 :
-			self.police = 8
+			self.police = 10
 
 		self.texteHuit = self.texteSix
 		self.texteSept = self.texteCinq
@@ -261,10 +259,9 @@ class Bot() :
 		self.texteDeux = texte
 		self.texteUn = reponseDuBot
 
-	def rechercheVideoSurYoutube(self, texte) :
-		motRecherche = texte
-		new_string = motRecherche.replace(" ", "+")
-		lienRechercheVideo = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + new_string)
+	def rechercheVideoSurYoutube(self, texte) : 
+		nouveauTexte = texte.replace(" ", "+")
+		lienRechercheVideo = urllib.request.urlopen("https://www.youtube.com/results?search_query=" + nouveauTexte)
 		lienVideo = re.findall(r"watch\?v=(\S{11})", lienRechercheVideo.read().decode())
 		return("https://www.youtube.com/watch?v=" + lienVideo[0])
 
