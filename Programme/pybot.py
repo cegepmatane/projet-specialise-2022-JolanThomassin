@@ -35,6 +35,7 @@ class Bot() :
 		self.texteSept = ""
 		self.texteHuit = ""
 		self.modeRechercheYoutubeActif = False
+		self.police = 14
 
 		### Création du bot ###
 		self.chatbot = ChatBot("Jolan")
@@ -70,6 +71,56 @@ class Bot() :
 			'Salut, Comment allez-vous ?',
 			'Bien',
 			'Que puis-je faire pour vous ?',
+		])
+
+		### Train pour Présentation ###
+		trainer.train([
+		 	'Présente toi',
+			'Bonjour je suis Deep un chatbot réalisé en Python',
+		])
+		trainer.train([
+		 	'Qui es tu ?',
+			'Bonjour je suis Deep un chatbot réalisé en Python',
+		])
+		trainer.train([
+		 	'Tu es ?',
+			'Bonjour je suis Deep un chatbot réalisé en Python',
+		])
+		trainer.train([
+		 	'Présentation',
+			'Bonjour je suis Deep un chatbot réalisé en Python',
+		])
+
+		### Train pour Loisirs / Passions ###
+		trainer.train([
+		 	'Quel sont tes loisirs ?',
+			"J'aime la programmation et regarder des films",
+			"Quel film ?",
+			"Les films de gladiateurs",
+		])
+		trainer.train([
+			"Quel genre de film ?",
+			"Les films de gladiateurs",
+		])
+		trainer.train([
+		 	'loisirs ?',
+			"J'aime la programmation et regarder des films",
+		])
+		trainer.train([
+		 	'Quesque tu aimes faire ?',
+			"J'aime la programmation et regarder des films",
+		])
+		trainer.train([
+		 	'Quesque tu aimes ?',
+			"J'aime la programmation et regarder des films",
+		])
+		trainer.train([
+		 	'Quel film aimes tu ?',
+			"J'aime les films de gladiateurs",
+		])
+		trainer.train([
+		 	'Quel sont tes passions ?',
+			"J'aime les films de gladiateurs",
 		])
 
 		### Train pour GIT ###
@@ -116,6 +167,12 @@ class Bot() :
 			'Discuter avec vous.',
 		])
 
+		### Train pour Humour ###
+		trainer.train([
+		 	'Raconte moi une blague',
+			'La plage dit à l’océan : dire que tout le monde aime l’eau c’est assez vague',
+		])
+		
 		### Démarrage ###
 		self.pagePrincipale()
 		self.ecranLogiciel.mainloop()
@@ -164,14 +221,14 @@ class Bot() :
 		self.boutonQuitterApplication = self.canvaEcranLogiciel.create_window((self.largeurEcran/2)-285, 450, window=self.boutonQuitterApplication)
 
 		### Chat de l'application ###
-		self.chatUserPositionUn = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+150, text=self.texteUn, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionDeux = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+100, text=self.texteDeux, font=("OCR A Extended", 14), fill="#6CB6BB")
-		self.chatUserPositionTrois = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+50, text=self.texteTrois, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionQuatre = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2), text=self.texteQuatre, font=("OCR A Extended", 14), fill="#6CB6BB")
-		self.chatUserPositionCinq = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-50, text=self.texteCinq, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionSix = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-100), text=self.texteSix, font=("OCR A Extended", 14), fill="#6CB6BB")
-		self.chatUserPositionSept = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-150, text=self.texteSept, font=("OCR A Extended", 14), fill="#EAD0E2")
-		self.chatUserPositionHuit = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-200), text=self.texteHuit, font=("OCR A Extended", 14), fill="#6CB6BB")
+		self.chatUserPositionUn = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+150, text=self.texteUn, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionDeux = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+100, text=self.texteDeux, font=("OCR A Extended", self.police), fill="#6CB6BB")
+		self.chatUserPositionTrois = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)+50, text=self.texteTrois, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionQuatre = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2), text=self.texteQuatre, font=("OCR A Extended", self.police), fill="#6CB6BB")
+		self.chatUserPositionCinq = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-50, text=self.texteCinq, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionSix = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-100), text=self.texteSix, font=("OCR A Extended", self.police), fill="#6CB6BB")
+		self.chatUserPositionSept = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2)-150, text=self.texteSept, font=("OCR A Extended", self.police), fill="#EAD0E2")
+		self.chatUserPositionHuit = self.canvaEcranLogiciel.create_text((self.largeurEcran/2), (self.hauteurEcran/2-200), text=self.texteHuit, font=("OCR A Extended", self.police), fill="#6CB6BB")
 
 	def quitterLeJeu(self):
 		self.ecranLogiciel.destroy()
@@ -179,7 +236,22 @@ class Bot() :
 	def copierLeTexte(self):
 		pyperclip.copy(str(self.texteUn))
 
+
 	def changerDeTexte(self, texte, reponseDuBot):
+		compteurUn = 0
+		compteurDeux = 0 
+		for i in range(0, len(texte)) :
+			compteurUn += 1
+		for y in range(0, len(str(reponseDuBot))) :
+			compteurDeux += 1
+		if compteurUn < compteurDeux :
+			compteurUn = compteurDeux
+
+		if compteurUn < 62 :
+			self.police = 14
+		elif compteurUn >= 62 :
+			self.police = 8
+
 		self.texteHuit = self.texteSix
 		self.texteSept = self.texteCinq
 		self.texteSix = self.texteQuatre
