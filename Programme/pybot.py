@@ -167,6 +167,12 @@ class Bot() :
 			'Discuter avec vous.',
 		])
 
+		### Train pour Humour ###
+		trainer.train([
+		 	'Raconte moi une blague',
+			'La plage dit à l’océan : dire que tout le monde aime l’eau c’est assez vague',
+		])
+		
 		### Démarrage ###
 		self.pagePrincipale()
 		self.ecranLogiciel.mainloop()
@@ -232,13 +238,18 @@ class Bot() :
 
 
 	def changerDeTexte(self, texte, reponseDuBot):
-		compteur = 0 
+		compteurUn = 0
+		compteurDeux = 0 
 		for i in range(0, len(texte)) :
-			compteur += 1
+			compteurUn += 1
+		for y in range(0, len(str(reponseDuBot))) :
+			compteurDeux += 1
+		if compteurUn < compteurDeux :
+			compteurUn = compteurDeux
 
-		if compteur < 62 :
+		if compteurUn < 62 :
 			self.police = 14
-		elif compteur >= 62 :
+		elif compteurUn >= 62 :
 			self.police = 8
 
 		self.texteHuit = self.texteSix
