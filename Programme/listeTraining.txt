@@ -1,2 +1,8 @@
 00Ça va ? $ 03Je suis Heureuse ! $
 01Ça va ? $ 02Je suis Triste... $
+11Bobobo $ 11Tu voulais le 11 ? $ 
+03Hola $ 03Hola ! que tal ? $ 
+00Bonjour $ 01Hey ! je suis deep $ 
+00Tu connais jolan ? $ 04Evidemment ! il est incroyable ! $ 
+00Tu connais manoel ? $ 11Oui mais il me fait peur $ 
+00Quel es ta boisson préféré ? $ 08L'eau bien entendu $ 

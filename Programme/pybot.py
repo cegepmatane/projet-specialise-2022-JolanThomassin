@@ -53,6 +53,24 @@ class Bot() :
 				self.emotionSeletionné = "02"
 			def choixEmotionHeureux() :
 				self.emotionSeletionné = "03"
+			def choixEmotionAmour() :
+				self.emotionSeletionné = "04"
+			def choixEmotionBlaser() :
+				self.emotionSeletionné = "05"
+			def choixEmotionBoude() :
+				self.emotionSeletionné = "06"
+			def choixEmotionCligne() :
+				self.emotionSeletionné = "07"
+			def choixEmotionEvident() :
+				self.emotionSeletionné = "08"
+			def choixEmotionFatigue() :
+				self.emotionSeletionné = "09"
+			def choixEmotionPerdu() :
+				self.emotionSeletionné = "10"
+			def choixEmotionPeur() :
+				self.emotionSeletionné = "11"
+			def choixEmotionPranked() :
+				self.emotionSeletionné = "12"
 
 			self.menubar = Menu(self.ecranLogiciel)
 			self.ecranLogiciel.config(menu=self.menubar)
@@ -67,19 +85,37 @@ class Bot() :
 			self.choixMenu.add_command(label="01 - Parle", command=choixEmotionParle)
 			self.choixMenu.add_command(label="02 - Triste", command=choixEmotionTriste)
 			self.choixMenu.add_command(label="03 - Heureux", command=choixEmotionHeureux)
+			self.choixMenu.add_command(label="04 - Amour", command=choixEmotionAmour)
+			self.choixMenu.add_command(label="05 - Blaser", command=choixEmotionBlaser)
+			self.choixMenu.add_command(label="06 - Boude", command=choixEmotionBoude)
+			self.choixMenu.add_command(label="07 - Cligne", command=choixEmotionCligne)
+			self.choixMenu.add_command(label="08 - Evident", command=choixEmotionEvident)
+			self.choixMenu.add_command(label="09 - Fatigue", command=choixEmotionFatigue)
+			self.choixMenu.add_command(label="10 - Perdu", command=choixEmotionPerdu)
+			self.choixMenu.add_command(label="11 - Peur", command=choixEmotionPeur)
+			self.choixMenu.add_command(label="12 - Pranked", command=choixEmotionPranked)
 
-		créationMenu()
-		
 		### Initialisation des images ###
 		self.image00 = PhotoImage(file="../Personnage/basique.png")
 		self.image01 = PhotoImage(file="../Personnage/parle.png")
 		self.image02 = PhotoImage(file="../Personnage/triste.png")
 		self.image03 = PhotoImage(file="../Personnage/contente.png")
-		self.imageEmotionPersonnage = [self.image00, self.image01, self.image02, self.image03]
+		self.image04 = PhotoImage(file="../Personnage/amour.png")
+		self.image05 = PhotoImage(file="../Personnage/blazer.png")
+		self.image06 = PhotoImage(file="../Personnage/boude.png")
+		self.image07 = PhotoImage(file="../Personnage/cligne.png")
+		self.image08 = PhotoImage(file="../Personnage/evidence.png")
+		self.image09 = PhotoImage(file="../Personnage/fatigue.png")
+		self.image10 = PhotoImage(file="../Personnage/perdu.png")
+		self.image11 = PhotoImage(file="../Personnage/peur.png")
+		self.image12 = PhotoImage(file="../Personnage/pranked.png")
+		self.imageEmotionPersonnage = [self.image00, self.image01, self.image02, self.image03, self.image04, self.image05, self.image06, self.image07, self.image08
+		, self.image09, self.image10, self.image11, self.image12]
 
 		### Démarrage ###
 		self.textarea = Text(self.canvaEcranLogicielDeux)
 		self.questionField = Entry(self.canvaEcranLogicielTrois)
+		créationMenu()
 		self.pagePrincipale()
 		self.ecranLogiciel.mainloop()
 
@@ -129,20 +165,14 @@ class Bot() :
 					compteur += 1
 
 			### Traitement de la valeur obtenue ###
-			if valeurEmotion == "01" :
-				### Parle ###
-				self.imageDeFond = self.imageEmotionPersonnage[1]
-			elif valeurEmotion == "02" :
-				### Triste ###
-				self.imageDeFond = self.imageEmotionPersonnage[2]
-			elif valeurEmotion == "03" :
-				### Triste ###
-				self.imageDeFond = self.imageEmotionPersonnage[3] 
+			premierChiffre = valeurEmotion[0]
+			if premierChiffre == "0" :
+				self.imageDeFond = self.imageEmotionPersonnage[int(valeurEmotion[1])]
+			elif premierChiffre == "1" :
+				self.imageDeFond = self.imageEmotionPersonnage[int(valeurEmotion)]
 			else :
-				### Neutre ###
 				self.imageDeFond = self.imageEmotionPersonnage[0]
 			self.canvaEcranLogiciel.create_image(self.largeurEcran / 2 / 2, self.hauteurEcran / 2, image=self.imageDeFond)
-
 
 		### Images du chatbot ###
 		self.canvaEcranLogiciel.create_image(self.largeurEcran / 2 / 2, self.hauteurEcran / 2, image=self.imageEmotionPersonnage[0])
@@ -178,21 +208,31 @@ class Bot() :
 						self.ligneAjouterEphemere = question
 						self.textarea.insert(END,question + '\n\n')
 						self.questionField.delete(0,END)
-						self.textarea.yview_moveto(1)
 						self.etapeProcessus += 1
 						self.textarea.insert(END,'Sélectionner une émotion (00 - 13) : ' + '\n')
-						self.textarea.insert(END,'00 - basique : ' + '\n')
+						self.textarea.insert(END,'00 - neutre : ' + '\n')
 						self.textarea.insert(END,'01 - parle : ' + '\n')
 						self.textarea.insert(END,'02 - triste : ' + '\n')
+						self.textarea.insert(END,'03 - heureux : ' + '\n')
+						self.textarea.insert(END,'04 - amour : ' + '\n')
+						self.textarea.insert(END,'05 - blaser : ' + '\n')
+						self.textarea.insert(END,'06 - boude : ' + '\n')
+						self.textarea.insert(END,"07 - clin d'œil : " + '\n')
+						self.textarea.insert(END,'08 - evidence : ' + '\n')
+						self.textarea.insert(END,'09 - fatigue : ' + '\n')
+						self.textarea.insert(END,'10 - perdu : ' + '\n')
+						self.textarea.insert(END,'11 - peur : ' + '\n')
+						self.textarea.insert(END,'12 - pranked : ' + '\n')
+						self.textarea.yview_moveto(1)
 				elif self.etapeProcessus == 1 :
 					self.ligneAjouter += question
 					self.ligneAjouter += self.ligneAjouterEphemere
 					self.ligneAjouter += " $ " 
 					self.textarea.insert(END, question + '\n\n')
 					self.questionField.delete(0,END)
-					self.textarea.yview_moveto(1)
 					self.etapeProcessus += 1
 					self.textarea.insert(END,'Entrer le deuxième message : ' + '\n')
+					self.textarea.yview_moveto(1)
 				elif self.etapeProcessus == 3 :
 					self.ligneAjouter += question
 					self.ligneAjouter += self.ligneAjouterEphemere
@@ -225,11 +265,6 @@ class Bot() :
 			self.questionField.delete(0, END)
 
 		self.questionField.bind('<Return>', affichageTexte)
-
-
-		
-
-
 
 lancementLogiciel = Bot()
 lancementLogiciel
