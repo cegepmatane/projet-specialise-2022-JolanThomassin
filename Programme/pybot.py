@@ -21,6 +21,7 @@ class Bot() :
 		# Définition des dimensions de l'écran #
 		self.largeurEcran = 1000
 		self.hauteurEcran = 500
+
 		# Création de l'écran #
 		self.ecranLogiciel = Tk()
 		self.ecranLogiciel.title("Le Botchat de Jolan")
@@ -29,33 +30,52 @@ class Bot() :
 
 		self.canvaEcranLogiciel = Canvas(self.ecranLogiciel, width=self.largeurEcran/2, height=self.hauteurEcran, bg="black")
 		self.canvaEcranLogiciel.pack(side=LEFT)
-
 		self.canvaEcranLogicielTrois = Canvas(self.ecranLogiciel, width=self.largeurEcran/2, height=self.hauteurEcran/8, bg="blue")
 		self.canvaEcranLogicielTrois.pack(side=BOTTOM)
-
 		self.canvaEcranLogicielDeux = Canvas(self.ecranLogiciel, width=self.largeurEcran/2, height=self.hauteurEcran, bg="red")
 		self.canvaEcranLogicielDeux.pack(side=TOP)
 
-		
-
 		self.bot = ChatBot('Bot')
 		self.trainer = ListTrainer(self.bot)
-		
-		# Création d'un menu de navigation
-		def redirectionChatbot() :
-			self.pagePrincipale()
-		def redirectionTraining() :
-			self.pageTraining()
-		self.menubar = Menu(self.ecranLogiciel)  
-		self.menubar.add_command(label="Chatbot", command=redirectionChatbot)  
-		self.menubar.add_command(label="Training", command=redirectionTraining)   
-		self.ecranLogiciel.config(menu=self.menubar)
 
+		self.emotionSeletionné = "00"
+
+		def créationMenu() :
+			def redirectionChatbot() :
+				self.pagePrincipale()
+			def redirectionTraining() :
+				self.pageTraining()
+			def choixEmotionNeutre() :
+				self.emotionSeletionné = "00"
+			def choixEmotionParle() :
+				self.emotionSeletionné = "01"
+			def choixEmotionTriste() :
+				self.emotionSeletionné = "02"
+			def choixEmotionHeureux() :
+				self.emotionSeletionné = "03"
+
+			self.menubar = Menu(self.ecranLogiciel)
+			self.ecranLogiciel.config(menu=self.menubar)
+
+			self.menubar.add_command(label="Chatbot", command=redirectionChatbot)  
+			self.menubar.add_command(label="Training", command=redirectionTraining) 
+
+			self.choixMenu = Menu(self.menubar)
+			self.menubar.add_cascade(label="Choix de l'émotion", menu=self.choixMenu)
+
+			self.choixMenu.add_command(label="00 - Neutre", command=choixEmotionNeutre)
+			self.choixMenu.add_command(label="01 - Parle", command=choixEmotionParle)
+			self.choixMenu.add_command(label="02 - Triste", command=choixEmotionTriste)
+			self.choixMenu.add_command(label="03 - Heureux", command=choixEmotionHeureux)
+
+		créationMenu()
+		
 		### Initialisation des images ###
 		self.image00 = PhotoImage(file="../Personnage/basique.png")
 		self.image01 = PhotoImage(file="../Personnage/parle.png")
 		self.image02 = PhotoImage(file="../Personnage/triste.png")
-		self.imageEmotionPersonnage = [self.image00, self.image01, self.image02]
+		self.image03 = PhotoImage(file="../Personnage/contente.png")
+		self.imageEmotionPersonnage = [self.image00, self.image01, self.image02, self.image03]
 
 		### Démarrage ###
 		self.textarea = Text(self.canvaEcranLogicielDeux)
@@ -87,8 +107,10 @@ class Bot() :
 			if question != "" :
 				question = question.lower()
 				question = question.capitalize()
+				question = self.emotionSeletionné + question
 				answer = self.bot.get_response(question)
 				changementEmotion(answer)
+				question = str(question)[2:]
 				answer = str(answer)[2:]
 				self.textarea.insert(END,'Vous : '+question+'\n\n')
 				self.textarea.insert(END,'Deep : '+str(answer)+'\n\n')
@@ -112,7 +134,10 @@ class Bot() :
 				self.imageDeFond = self.imageEmotionPersonnage[1]
 			elif valeurEmotion == "02" :
 				### Triste ###
-				self.imageDeFond = self.imageEmotionPersonnage[2]  
+				self.imageDeFond = self.imageEmotionPersonnage[2]
+			elif valeurEmotion == "03" :
+				### Triste ###
+				self.imageDeFond = self.imageEmotionPersonnage[3] 
 			else :
 				### Neutre ###
 				self.imageDeFond = self.imageEmotionPersonnage[0]
@@ -155,7 +180,7 @@ class Bot() :
 						self.questionField.delete(0,END)
 						self.textarea.yview_moveto(1)
 						self.etapeProcessus += 1
-						self.textarea.insert(END,'Sélectionner une émotions (00 - 13) : ' + '\n')
+						self.textarea.insert(END,'Sélectionner une émotion (00 - 13) : ' + '\n')
 						self.textarea.insert(END,'00 - basique : ' + '\n')
 						self.textarea.insert(END,'01 - parle : ' + '\n')
 						self.textarea.insert(END,'02 - triste : ' + '\n')
