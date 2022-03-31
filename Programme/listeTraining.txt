@@ -1,0 +1,5 @@
+01Salut $ 01Salut, Comment allez-vous ? $
+02Hey $ 02Hey, Comment allez-vous ? $
+00Hey $ 01Hey ! tu vas bien ? $ 
+00Bonsoir $ 01Bonsoir camarade  $ 
+02Wesh $ 01Wesh wesh ma couille $ 
