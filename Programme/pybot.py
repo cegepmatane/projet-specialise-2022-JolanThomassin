@@ -36,7 +36,7 @@ class Bot() :
 		self.canvaEcranLogicielDeux = Canvas(self.ecranLogiciel, width=self.largeurEcran/2, height=self.hauteurEcran, bg="red")
 		self.canvaEcranLogicielDeux.pack(side=TOP)
 
-		self.imageDeFond = PhotoImage(file="../Personnage/basique.png")
+		
 
 		self.bot = ChatBot('Bot')
 		self.trainer = ListTrainer(self.bot)
@@ -51,10 +51,15 @@ class Bot() :
 		self.menubar.add_command(label="Training", command=redirectionTraining)   
 		self.ecranLogiciel.config(menu=self.menubar)
 
-		self.textarea = Text(self.canvaEcranLogicielDeux)
-		self.questionField = Entry(self.canvaEcranLogicielTrois)
+		### Initialisation des images ###
+		self.image00 = PhotoImage(file="../Personnage/basique.png")
+		self.image01 = PhotoImage(file="../Personnage/parle.png")
+		self.image02 = PhotoImage(file="../Personnage/triste.png")
+		self.imageEmotionPersonnage = [self.image00, self.image01, self.image02]
 
 		### Démarrage ###
+		self.textarea = Text(self.canvaEcranLogicielDeux)
+		self.questionField = Entry(self.canvaEcranLogicielTrois)
 		self.pagePrincipale()
 		self.ecranLogiciel.mainloop()
 
@@ -75,19 +80,21 @@ class Bot() :
 					else : 
 						phrase += word
 						phrase += " "
-				print(tableauLigne)
 				self.trainer.train([tableauLigne[0], tableauLigne[1]])
 
 		def botReply(event):
-		    question= r.get()
-		    if question != "" :
-			    question=question.capitalize()
-			    answer=self.bot.get_response(question)
-			    self.textarea.insert(END,'Vous : '+question+'\n\n')
-			    self.textarea.insert(END,'Deep : '+str(answer)+'\n\n')
-			    changementEmotion(answer)
-			    self.questionField.delete(0,END)
-			    self.textarea.yview_moveto(1)
+			question= r.get()
+			if question != "" :
+				question = question.lower()
+				question = question.capitalize()
+				answer = self.bot.get_response(question)
+				changementEmotion(answer)
+				answer = str(answer)[2:]
+				self.textarea.insert(END,'Vous : '+question+'\n\n')
+				self.textarea.insert(END,'Deep : '+str(answer)+'\n\n')
+
+				self.questionField.delete(0,END)
+				self.textarea.yview_moveto(1)
 
 		def changementEmotion(texteBot) :
 			### Récupération des deux premieres caractères de la réponse du bot ###
@@ -98,18 +105,22 @@ class Bot() :
 				if compteur <= 1 :
 					valeurEmotion = valeurEmotion + lettre
 					compteur += 1
-			print (valeurEmotion)
 
 			### Traitement de la valeur obtenue ###
 			if valeurEmotion == "01" :
-				self.imageDeFond = PhotoImage(file="../Personnage/parle.png")
+				### Parle ###
+				self.imageDeFond = self.imageEmotionPersonnage[1]
+			elif valeurEmotion == "02" :
+				### Triste ###
+				self.imageDeFond = self.imageEmotionPersonnage[2]  
 			else :
-				self.imageDeFond = PhotoImage(file="../Personnage/basique.png")
+				### Neutre ###
+				self.imageDeFond = self.imageEmotionPersonnage[0]
 			self.canvaEcranLogiciel.create_image(self.largeurEcran / 2 / 2, self.hauteurEcran / 2, image=self.imageDeFond)
 
 
 		### Images du chatbot ###
-		self.canvaEcranLogiciel.create_image(self.largeurEcran / 2 / 2, self.hauteurEcran / 2, image=self.imageDeFond)
+		self.canvaEcranLogiciel.create_image(self.largeurEcran / 2 / 2, self.hauteurEcran / 2, image=self.imageEmotionPersonnage[0])
 
 		### Zone d'affichage du texte ###
 		self.textarea = Text(self.canvaEcranLogicielDeux, font=('times new roman',20,'bold'), wrap='word', bg='black', fg='white')
@@ -136,7 +147,8 @@ class Bot() :
 		def affichageTexte(event):
 			question = r.get()
 			if question != "" :
-				question=question.capitalize()
+				question = question.lower()
+				question = question.capitalize()
 				if (self.etapeProcessus == 0) or (self.etapeProcessus == 2) :
 						self.ligneAjouterEphemere = question
 						self.textarea.insert(END,question + '\n\n')
@@ -151,7 +163,6 @@ class Bot() :
 					self.ligneAjouter += question
 					self.ligneAjouter += self.ligneAjouterEphemere
 					self.ligneAjouter += " $ " 
-					print(self.ligneAjouter)
 					self.textarea.insert(END, question + '\n\n')
 					self.questionField.delete(0,END)
 					self.textarea.yview_moveto(1)
@@ -161,7 +172,6 @@ class Bot() :
 					self.ligneAjouter += question
 					self.ligneAjouter += self.ligneAjouterEphemere
 					self.ligneAjouter += " $ "
-					print(self.ligneAjouter)
 					self.textarea.insert(END, question + '\n\n')
 					self.questionField.delete(0,END)
 					self.textarea.yview_moveto(1)
@@ -173,6 +183,8 @@ class Bot() :
 					file_object.write(self.ligneAjouter)
 					# Close the file
 					file_object.close()
+
+					self.pageTraining()
 
 		### Zone d'affichage du texte ###
 		self.textarea = Text(self.canvaEcranLogicielDeux, font=('times new roman',20,'bold'), wrap='word', bg='black', fg='white')
