@@ -1,5 +1,5 @@
 # projet-specialise-2022-JolanThomassin
-Réalisation d'un chatbot en python dans l'optique du cours de projet spécialisé.
+Réalisation d'un chatbot en python dans l'optique du cours de projet spécialisé.  [Voir la vidéo Youtube](https://www.youtube.com/watch?v=Rpio1OlUwSY).
 
 # Capacités actuelles du bot :
  - Capable d'avoir un échange basique (Salut, ça va ?, ...).
